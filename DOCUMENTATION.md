@@ -1,82 +1,83 @@
-<h1>🚌 Documentation du Projet : BookBus (Clone marKoub.ma)</h1>
-__A. Analyse du Domaine__
+# 🚌 Projet : BookBus (Clone marKoub.ma)
 
-1. Processus de Réservation (Flux Utilisateur)
-   Le processus de réservation sur BookBus suit un parcours fluide inspiré de marKoub.ma :
+> **Documentation d'Analyse et d'Architecture** > _Statut : Phase de Conception_ | _Date : 26 Janvier 2026_
 
-- Recherche : L'utilisateur sélectionne une ville de départ, une destination et une date.
+---
 
-- Sélection : Une liste de voyages disponibles s'affiche. L'utilisateur choisit l'horaire et le bus qui lui conviennent.
+## 📂 A. Analyse du Domaine
 
-Détails : Sélection du siège (siège spécifique) et saisie des informations personnelles.
+### 1. Processus de Réservation (Flux Utilisateur)
 
-Confirmation : Validation de la réservation et génération d'un billet numérique.
+Le parcours utilisateur a été modélisé pour garantir une expérience fluide, similaire à celle de marKoub.ma :
 
-2. Entités Principales
-   Utilisateur (User) : Client ou Administrateur.
+- 🔍 **Recherche :** L'utilisateur définit sa ville de départ, sa destination et la date du voyage.
+- 🚌 **Sélection :** Affichage dynamique des trajets disponibles avec filtrage par prix ou horaire.
+- 💺 **Détails & Sièges :** Choix précis du siège dans le bus et saisie des informations passagers.
+- 🎟️ **Validation :** Confirmation de la réservation et génération automatique du billet.
 
-Ville (City) : Les points d'arrêt (Départ/Arrivée).
+### 2. Entités Principales Identifiées
 
-Bus : Le véhicule avec une capacité définie.
+| Entité                    | Rôle dans le système                                                       |
+| :------------------------ | :------------------------------------------------------------------------- |
+| **Utilisateur (User)**    | Gère les profils Clients et les accès Administrateurs.                     |
+| **Ville (City)**          | Référentiel des points de départ et d'arrivée au Maroc.                    |
+| **Bus**                   | Gère le parc de véhicules et leur capacité maximale.                       |
+| **Voyage (Trip)**         | L'entité pivot liant une ville A à une ville B avec un prix et un horaire. |
+| **Réservation (Booking)** | Enregistre l'achat d'un siège par un utilisateur pour un voyage précis.    |
 
-Voyage (Trip) : La liaison entre deux villes à une heure précise avec un prix.
+### 3. Flux d'Administration
 
-Réservation (Booking) : Le lien entre un utilisateur et un voyage.
+L'administrateur dispose d'une interface de gestion permettant de :
 
-3. Flux d'Administration
-   L'administrateur dispose d'un tableau de bord pour :
+- Maintenir à jour la liste des **villes** desservies.
+- Gérer la flotte de **bus** (ajout/suppression/maintenance).
+- Planifier les **trajets** (Trip Management).
+- Superviser l'ensemble des **réservations** clients.
 
-Gérer les villes et les bus.
+---
 
-Planifier de nouveaux trajets.
+## 🏗️ B. Proposition d'Architecture
 
-Visualiser les réservations effectuées par les clients.
+### 1. Schéma de Base de Données (MCD/ERD)
 
-**B. Proposition d'Architecture**
+L'architecture repose sur une base relationnelle de **5 tables minimum** :
 
-1. Schéma de Base de Données (MCD/ERD)
-   Nous avons identifié 5 tables essentielles :
+- **users** : `id, name, email, password, role`
+- **cities** : `id, name`
+- **buses** : `id, name, capacity`
+- **trips** : `id, bus_id, departure_city_id, arrival_city_id, price, departure_time`
+- **bookings** : `id, user_id, trip_id, seat_number, status`
 
-users : id, name, email, password, role (admin/customer)
+### 2. Fonctionnalités MVP (Minimum Viable Product)
 
-cities : id, name
+- [x] **Authentification :** Système complet via Laravel Breeze (Login/Register).
+- [x] **Gestion des Trajets :** Possibilité pour l'admin de créer des liaisons entre villes.
+- [x] **Moteur de Recherche :** Recherche simple par ville et par date.
+- [x] **Réservation :** Capacité de réserver un siège sur un voyage spécifique.
 
-buses : id, name, capacity
+### 3. Diagrammes UML
 
-trips : id, bus_id, departure_city_id, arrival_city_id, price, departure_time
+- **Cas d'utilisation :** Distinction claire entre les droits du Passager (Consultation/Achat) et de l'Admin (Gestion totale).
+- **Diagramme de Classes :** Organisation des classes basée sur le pattern Active Record (Eloquent ORM) de Laravel.
 
-bookings : id, user_id, trip_id, seat_number, status
+---
 
-2. Fonctionnalités MVP
-   Authentification (Inscription/Connexion).
+## 🛠️ C. Choix Techniques
 
-Recherche de trajets par villes et date.
+### 1. Justification de Laravel
 
-Système de réservation simple.
+Le choix de **Laravel 10** repose sur plusieurs piliers stratégiques :
 
-Dashboard Admin pour la gestion des bus et trajets.
+- **Productivité :** Les outils comme Artisan et Eloquent ORM permettent de développer le MVP en un temps record (3 jours).
+- **Sécurité :** Gestion native des protections contre les failles courantes (CSRF, XSS, Injections SQL).
+- **Maintenabilité :** L'architecture MVC de Laravel assure une séparation claire entre la logique métier et l'affichage.
 
-3. Diagrammes UML (Concepts)
-   Cas d'utilisation : \* Passager : Rechercher voyage, Réserver, Voir ses billets.
+### 2. Dépendances PHP/Laravel
 
-Admin : Gérer les bus, Ajouter des trajets, Voir les statistiques.
+- **PHP 8.2+** : Pour bénéficier des dernières performances du langage.
+- **Laravel Breeze & Livewire** : Pour une authentification robuste et une interface utilisateur réactive.
+- **Pest Framework** : Choisi pour la simplicité et la clarté de sa syntaxe lors des tests unitaires.
 
-Diagramme de Classes : Structure basée sur les Modèles Eloquent de Laravel (User, City, Bus, Trip, Booking).
+---
 
-**C. Choix Techniques**
-
-1. Pourquoi Laravel ?
-   Écosystème Robuste : Utilisation d'Eloquent ORM pour une gestion fluide de la base de données.
-
-Sécurité : Protections intégrées contre les failles CSRF et injections SQL.
-
-Rapidité de développement : Idéal pour livrer un MVP en 3 jours grâce aux outils comme Artisan et Breeze.
-
-2. Dépendances PHP/Laravel
-   PHP 8.2+
-
-**Laravel 10**
-
-Laravel Breeze / Livewire : Pour une interface réactive et une authentification rapide.
-
-Pest : Pour les tests unitaires et fonctionnels.
+_Projet réalisé dans le cadre du cursus de développement Web._
