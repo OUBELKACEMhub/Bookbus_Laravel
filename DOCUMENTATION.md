@@ -1,5 +1,5 @@
-🚌 Documentation du Projet : BookBus (Clone marKoub.ma)
-A. Analyse du Domaine
+<h1>🚌 Documentation du Projet : BookBus (Clone marKoub.ma)</h1>
+__A. Analyse du Domaine__
 
 1. Processus de Réservation (Flux Utilisateur)
    Le processus de réservation sur BookBus suit un parcours fluide inspiré de marKoub.ma :
@@ -32,7 +32,7 @@ Planifier de nouveaux trajets.
 
 Visualiser les réservations effectuées par les clients.
 
-B. Proposition d'Architecture
+**B. Proposition d'Architecture**
 
 1. Schéma de Base de Données (MCD/ERD)
    Nous avons identifié 5 tables essentielles :
@@ -63,7 +63,7 @@ Admin : Gérer les bus, Ajouter des trajets, Voir les statistiques.
 
 Diagramme de Classes : Structure basée sur les Modèles Eloquent de Laravel (User, City, Bus, Trip, Booking).
 
-C. Choix Techniques
+**C. Choix Techniques**
 
 1. Pourquoi Laravel ?
    Écosystème Robuste : Utilisation d'Eloquent ORM pour une gestion fluide de la base de données.
@@ -75,7 +75,7 @@ Rapidité de développement : Idéal pour livrer un MVP en 3 jours grâce aux ou
 2. Dépendances PHP/Laravel
    PHP 8.2+
 
-Laravel 10
+**Laravel 10**
 
 Laravel Breeze / Livewire : Pour une interface réactive et une authentification rapide.
 
