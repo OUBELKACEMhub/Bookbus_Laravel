@@ -76,7 +76,7 @@ Le choix de **Laravel 10** repose sur plusieurs piliers stratégiques :
 
 - **Productivité :** Les outils comme Artisan et Eloquent ORM permettent de développer le MVP en un temps record.
 - **Sécurité :** Gestion native des protections contre les failles courantes (CSRF, XSS, Injections SQL).
-- **Maintenabilité :** L'架构 MVC de Laravel assure une séparation claire entre la logique métier et l'affichage.
+- **Maintenabilité :** L'MVC de Laravel assure une séparation claire entre la logique métier et l'affichage.
 
 ### 2. Dépendances PHP/Laravel nécessaires
 
