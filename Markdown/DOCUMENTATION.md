@@ -42,7 +42,7 @@ L'administrateur dispose d'une interface de gestion permettant de :
 
 L'architecture repose sur une base relationnelle de **5 tables minimum** :
 
-![Schéma MCD / ERD](mcd.png)  
+![Schéma MCD / ERD](Diagram-mcd.drawio.png)  
 
 - **users** : `id, name, email, password, role`
 - **cities** : `id, name`
@@ -64,7 +64,7 @@ L'architecture repose sur une base relationnelle de **5 tables minimum** :
 
 #### **Diagramme de Classes**
 Organisation des classes basée sur le pattern Active Record (Eloquent ORM) de Laravel.
-![Diagramme de Classes](class_diagram.png)
+![Diagramme de Classes](diagrammeDeClass.png)
 
 ---
 
@@ -76,7 +76,7 @@ Le choix de **Laravel 10** repose sur plusieurs piliers stratégiques :
 
 - **Productivité :** Les outils comme Artisan et Eloquent ORM permettent de développer le MVP en un temps record.
 - **Sécurité :** Gestion native des protections contre les failles courantes (CSRF, XSS, Injections SQL).
-- **Maintenabilité :** L'架构 MVC de Laravel assure une séparation claire entre la logique métier et l'affichage.
+- **Maintenabilité :** L'MVC de Laravel assure une séparation claire entre la logique métier et l'affichage.
 
 ### 2. Dépendances PHP/Laravel nécessaires
 
