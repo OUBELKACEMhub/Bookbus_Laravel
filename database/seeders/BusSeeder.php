@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Bus;
+
 
 class BusSeeder extends Seeder
 {
@@ -12,17 +13,31 @@ class BusSeeder extends Seeder
      */
     public function run(): void
     {
-        $statuses = ['Disponible', 'En maintenance', 'En route'];
-        
-        for ($i = 0; $i < 10; $i++) {
-            DB::table('buses')->insert([
-                
-                'matricule' => fake()->unique()->numberBetween(1000, 99999) . '|' . fake()->randomElement(['A', 'B', 'D', 'H']) . '|' . fake()->numberBetween(1, 80),
-                'capacite' => fake()->randomElement([30, 45, 50, 60]), 
-                'status' => fake()->randomElement($statuses),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        $buses = [
+            [
+                'matricule' => '12345-A-01',
+                'capacite'  => 50,
+                'status'    => 'disponible',
+            ],
+            [
+                'matricule' => '67890-B-07',
+                'capacite'  => 30,
+                'status'    => 'en_route',
+            ],
+            [
+                'matricule' => '11223-D-15',
+                'capacite'  => 50,
+                'status'    => 'en_panne',
+            ],
+            [
+                'matricule' => '44556-H-22',
+                'capacite'  => 18,
+                'status'    => 'disponible',
+            ],
+        ];
+
+        foreach ($buses as $bus) {
+            Bus::create($bus);
         }
     }
 }

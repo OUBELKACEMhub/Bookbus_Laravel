@@ -3,8 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use App\Models\Route;
 
 class RouteSeeder extends Seeder
 {
@@ -13,30 +12,23 @@ class RouteSeeder extends Seeder
      */
     public function run(): void
     {
-       
-        DB::table('routes')->insert([
+        $routes = [
             [
-                'address' => '123 Rue de Casablanca, Maarif',
-                'nom_trajet' => 'Trajet Express Casa-Rabat',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'nom_trajet' => 'Axe Casa-Marrakech',
+                'address'    => 'Autoroute A7, Maroc',
             ],
             [
-                'address' => 'Avenue Mohammed V, Marrakech',
-                'nom_trajet' => 'Navette Centre Ville',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'nom_trajet' => 'Ligne Nord (Rabat-Tanger)',
+                'address'    => 'Autoroute A1, Maroc',
             ],
-        ]);
+            [
+                'nom_trajet' => 'Axe Agadir-Marrakech',
+                'address'    => 'Autoroute A7 Sud, Maroc',
+            ],
+        ];
 
-      
-        for ($i = 0; $i < 10; $i++) {
-            DB::table('routes')->insert([
-                'address' => fake()->address(),
-                'nom_trajet' => 'Trajet ' . fake()->city(),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        foreach ($routes as $route) {
+            Route::create($route);
         }
     }
 }

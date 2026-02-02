@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('routes', function (Blueprint $table) {
             
             $table->id('trajet_id'); 
-            
             $table->string('address');
-            $table->string('nom_trajet'); 
-            
+            $table->string('nom_trajet');  
             $table->timestamps(); 
         });
     }

@@ -9,23 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('buses', function (Blueprint $table) {
-            $table->id();
-            $table->string('matricule')->unique();
-        $table->integer('capacite');
-        $table->string('status');
+   public function up(): void
+{
+    Schema::create('gares', function (Blueprint $table) {
+        $table->id();
+        $table->string('nom');
+        $table->string('adresse');
+        
+        
+        $table->foreignId('ville_id')->constrained('villes')->onDelete('cascade');
+        
         $table->timestamps();
-        });
-    }
-   
-   
+    });
+}
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('buses');
+        Schema::dropIfExists('gares');
     }
 };

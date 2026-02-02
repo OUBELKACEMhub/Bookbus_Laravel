@@ -1,13 +1,13 @@
 <?php
-
+use App\Models\Ville;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
+// Had l-code kiy-khddem l-page l-lowla mli t-dkhul l-site
 Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+    $villes = Ville::all(); // Bach l-moteur y-lqa l-villes
+    return view('recherche', compact('villes'));
+})->name('rechercher');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
 
-require __DIR__.'/settings.php';
+Route::get('/search', [SearchController::class, 'search'])->name('search');

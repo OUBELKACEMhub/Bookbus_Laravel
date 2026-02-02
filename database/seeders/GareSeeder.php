@@ -2,37 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
-    {
-        
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
-       
-        $this->call([
-        UserSeeder::class,
-        RouteSeeder::class,
-        BusSeeder::class,
-        SegmentSeeder::class,
-        BookingSeeder::class,
-        SegmentSeeder::class,
-        VilleSeeder::class,
-        GareSeeder::class,
-
-namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
 use App\Models\Gare;
 use App\Models\Ville;
@@ -74,11 +43,4 @@ class GareSeeder extends Seeder
             Gare::create($gare);
         }
     }
-}
-
-    ]);
-    }
-    
-
-
 }

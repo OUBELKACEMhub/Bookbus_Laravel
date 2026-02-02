@@ -1,33 +1,34 @@
 <?php
 
-namespace Database\Seeders;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-
-class BookingSeeder extends Seeder
+return new class extends Migration
 {
-    public function run(): void
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
-=        $userIds = DB::table('users')->pluck('id')->toArray();
-        $segmentIds = DB::table('segments')->pluck('id')->toArray();
-
-        if (empty($userIds) || empty($segmentIds)) {
-            $this->command->error('Khassak t-seeder Users o Segments qbel!');
-            return;
-        }
-
-        for ($i = 0; $i < 20; $i++) {
-            DB::table('bookings')->insert([
-                'client_id'    => fake()->randomElement($userIds),
-                'admin_id'     => fake()->optional(0.7)->randomElement($userIds), 
-                'segment_id'   => fake()->randomElement($segmentIds),
-                'status'       => fake()->randomElement(['pending', 'confirmed', 'cancelled']),
-                'seatNum'      => fake()->numberBetween(1, 50),
-                'is_completed' => fake()->boolean(20), // 20% ghadi ykoun completed
-                'created_at'   => now(),
-                'updated_at'   => now(),
-            ]);
-        }
+       Schema::create('bookings', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('client_id')->constrained('users')->onDelete('cascade');
+    $table->foreignId('segment_id')->constrained('segments')->onDelete('cascade');
+    $table->dateTime('date_reservation');
+    $table->enum('statut', ['Confirmé', 'Annulé', 'Payé'])->default('Confirmé');
+    $table->integer('siege_numero');
+    $table->boolean('is_completed')->default(false);
+    
+    $table->timestamps();
+});
     }
-}
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('bookings');
+    }
+};

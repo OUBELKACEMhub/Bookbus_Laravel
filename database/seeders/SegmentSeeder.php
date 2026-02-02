@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Segment;
 use App\Models\Bus;
 use App\Models\Route;
 
@@ -11,24 +12,33 @@ class SegmentSeeder extends Seeder
 {
     public function run(): void
     {
-        $busIds = DB::table('buses')->pluck('id')->toArray();
-        $trajetIds = DB::table('routes')->pluck('trajet_id')->toArray();
+        
+        $busId = DB::table('buses')->first()?->id;
+        $trajetId = DB::table('routes')->first()?->trajet_id; 
 
-        if (empty($busIds) || empty($trajetIds)) {
-            $this->command->info('Khassak t-seeder buses o routes qbel mat-runi hada!');
+        if (!$busId || !$trajetId) {
+            $this->command->error("Khass t-seeder Buses o Routes qbel ma t-dir Segments!");
             return;
         }
 
-        foreach ($busIds as $busId) {
-            DB::table('segments')->insert([
-                'bus_id'         => $busId,
-                'trajet_id'      => fake()->randomElement($trajetIds),
-                'departure_city' => fake()->city(),
-                'arrival_city'   => fake()->city(),
-                'departure_time' => fake()->dateTimeBetween('now', '+1 week'),
-                'created_at'     => now(),
-                'updated_at'     => now(),
-            ]);
-        }
+        // 2. Creeyi des segments dial t-test
+        Segment::create([
+            'bus_id' => $busId,
+            'tarif'=> 100.00,
+            'departure_city' => 'Casablanca',
+            'arrival_city' => 'Marrakech',
+            'trajet_id' => $trajetId,
+            'departure_time' => now()->addDays(1),
+        ]);
+
+        Segment::create([
+            'bus_id' => $busId,
+            'tarif'=> 90.00,
+            'departure_city' => 'Marrakech',
+            'arrival_city' => 'Agadir',
+            'trajet_id' => $trajetId,
+            'departure_time' => now()->addDays(2),
+        ]);
     }
 }
+

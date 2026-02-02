@@ -13,10 +13,8 @@ return new class extends Migration
 {
     Schema::create('segments', function (Blueprint $table) {
         $table->id(); // C'est le segment_id automatique
-        
-        // Correction ici : Change 'id' par 'bus_id'
-        $table->foreignId('bus_id')->unique()->constrained('buses')->onDelete('cascade');
-        
+        $table->decimal('tarif', 8, 2);
+        $table->foreignId('bus_id')->constrained('buses')->onDelete('cascade');
         $table->string('departure_city');
         $table->string('arrival_city');
         
@@ -24,7 +22,6 @@ return new class extends Migration
         $table->foreignId('trajet_id')->constrained('routes', 'trajet_id')->onDelete('cascade');
         
         $table->dateTime('departure_time');
-        $table->timestamps();
     });
 }
 
