@@ -2,6 +2,7 @@
 use App\Models\Ville;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\BookingController;
 
 // Had l-code kiy-khddem l-page l-lowla mli t-dkhul l-site
 Route::get('/', function () {
@@ -11,3 +12,4 @@ Route::get('/', function () {
 
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/booking/create/{id}', [BookingController::class, 'create'])->name('booking.create');
