@@ -76,4 +76,65 @@
             <p class="text-gray-500 text-sm">Notre équipe est là pour vous accompagner partout au Maroc.</p>
         </div>
     </div>
+    
+    @if(isset($trips))
+    <div id="results" class="mt-12 mb-20">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-black text-blue-900 italic uppercase">
+                Résultats disponibles <span class="text-yellow-500">({{ $trips->count() }})</span>
+            </h2>
+            <div class="h-1 bg-yellow-500 w-24 rounded-full"></div>
+        </div>
+
+        @if($trips->isEmpty())
+            <div class="bg-white p-12 rounded-3xl shadow-xl text-center border-2 border-dashed border-gray-200">
+                <div class="text-6xl mb-4 text-gray-300">
+                    <i class="fas fa-bus-alt"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-700 italic">Aucun trajet trouvé</h3>
+                <p class="text-gray-500">Essayez de changer les villes ou la date de voyage.</p>
+            </div>
+        @else
+            <div class="grid grid-cols-1 gap-6">
+                @foreach($trips as $trip)
+                <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden group">
+                    <div class="flex flex-col md:flex-row items-center p-6 md:p-8 gap-8">
+                        
+                        <div class="flex flex-col items-center md:items-start min-w-[150px]">
+                            <span class="text-xs font-black text-yellow-600 uppercase tracking-widest mb-1">{{ $trip->company->nom ?? 'CTM' }}</span>
+                            <span class="text-3xl font-black text-blue-900">{{ \Carbon\Carbon::parse($trip->departure_time)->format('H:i') }}</span>
+                            <span class="text-gray-400 text-sm font-medium">{{ \Carbon\Carbon::parse($trip->date)->format('d M Y') }}</span>
+                        </div>
+
+                        <div class="flex-1 flex items-center gap-4 w-full">
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-blue-900 leading-tight">{{ $trip->departure_city }}</p>
+                            </div>
+                            
+                            <div class="flex-1 flex items-center relative py-2">
+                                <div class="h-[2px] w-full bg-gray-200"></div>
+                                <i class="fas fa-bus text-yellow-500 absolute left-1/2 -translate-x-1/2 bg-white px-2"></i>
+                            </div>
+
+                            <div class="text-left">
+                                <p class="text-lg font-bold text-blue-900 leading-tight">{{ $trip->arrival_city }}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-6 w-full md:w-auto border-t md:border-t-0 md:border-l border-gray-100 pt-6 md:pt-0 md:pl-8">
+                            <div class="text-center md:text-right flex-1 md:flex-none">
+                                <span class="block text-3xl font-black text-blue-900">{{ $trip->price }} <small class="text-sm">DH</small></span>
+                                <span class="text-green-500 text-xs font-bold uppercase">Disponible</span>
+                            </div>
+                            <a href="{{ route('booking.create', $trip->id) }}" class="bg-blue-900 text-white font-bold px-8 py-4 rounded-2xl hover:bg-blue-800 transition-colors shadow-lg shadow-blue-100 whitespace-nowrap">
+                                Réserver
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        @endif
+    </div>
+    @endif
 @endsection
