@@ -27,7 +27,6 @@
                 <a href="/horaires" class="hover:text-yellow-600 transition">Horaires</a>
                 @auth
                     <a href="#" class="text-blue-900 font-bold">Mes Réservations</a>
-                    <a href="/logout" class="text-gray-600">Déconnexion</a>
                 @else
                     <a href="/login" class="text-gray-600">Connexion</a>
                     <a href="/register" class="bg-blue-900 text-white px-5 py-2 rounded-lg hover:bg-blue-800 transition">S'inscrire</a>
@@ -36,15 +35,7 @@
         </div>
     </nav>
 
-    <header class="bg-blue-900 py-16 text-white text-center relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 relative z-10">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 italic">Voyagez partout au Maroc au meilleur prix</h1>
-            <p class="text-blue-100 text-lg md:text-xl">Réservez vos tickets de bus en quelques clics avec BookBus.</p>
-        </div>
-        <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
-            <i class="fas fa-route text-[20rem]"></i>
-        </div>
-    </header>
+    
 
     <main class="max-w-7xl mx-auto px-4 -mt-8">
         @yield('content')
