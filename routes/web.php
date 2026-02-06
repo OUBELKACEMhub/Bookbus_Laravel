@@ -20,9 +20,13 @@ Route::get('/index', [SearchController::class, 'search'])->name('searche');
 
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+
 Route::get('/checkout/{segment_id}/{programme_id}', [BookingController::class, 'checkout'])->name('booking.checkout');
+Route::post('/reserver', [BookingController::class, 'store'])->name('reserver.store');
+Route::get('/mesResevation', [BookingController::class, 'index'])->name('reserver.afficher');
 
 Route::get('/horaires', [HorairesController::class, 'index'])->name('horaires');
+
 
 
 Route::middleware('guest')->group(function () {
