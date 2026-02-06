@@ -8,21 +8,29 @@ return new class extends Migration
 {
 public function up(): void
 {
-    Schema::create('programmes', function (Blueprint $table) {
-        $table->id();
-        $table->string('jour_depart'); // Matlan: "Lundi", "Quotidien"
-        $table->time('heure_depart');
-        $table->time('heure_arrivee');
+   
+    Schema::table('programmes', function (Blueprint $table) {
+      
+        $table->renameColumn('jour_depart', 'date_depart');
+    });
+
+    Schema::table('programmes', function (Blueprint $table) {
         
-        // Relation m3a Route (koul programme taba3 l-wahed l-route)
-        $table->foreignId('route_id')->constrained('routes', 'trajet_id')->onDelete('cascade');
-        
-        $table->timestamps();
+        $table->dateTime('date_depart')->change();
     });
 }
+
 public function down(): void
-    {
-        Schema::dropIfExists('programmes');
-    }
+{
+    Schema::table('programmes', function (Blueprint $table) {
+        
+        $table->renameColumn('date_depart', 'jour_depart');
+    });
+
+    Schema::table('programmes', function (Blueprint $table) {
+       
+        $table->string('jour_depart')->change();
+    });
+}
 };
 
