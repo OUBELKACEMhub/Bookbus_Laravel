@@ -54,7 +54,7 @@
                         Paiement par Carte
                     </h3>
 <!--  -->
-                    <form action="" method="POST" id="payment-form">
+                    <form action="{{ route('reserver.store') }}" method="POST" id="payment-form">
                         @csrf
                         <input type="hidden" name="segment_id" value="{{ $segment->id }}">
                         <input type="hidden" name="programme_id" value="{{ $programme->id }}">

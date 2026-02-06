@@ -26,7 +26,7 @@
                 <a href="/index" class="hover:text-yellow-600 transition">Accueil</a>
                 <a href="/horaires" class="hover:text-yellow-600 transition">Horaires</a>
                 @auth
-                    <a href="#" class="text-blue-900 font-bold">Mes Réservations</a>
+                    <a href="/mesResevation" class="text-blue-900 font-bold">Mes Réservations</a>
                     <a href="/logout" class="text-gray-600">Déconnexion</a>
                 @else
                     <a href="/login" class="text-gray-600">Connexion</a>
