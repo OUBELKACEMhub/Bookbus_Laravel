@@ -17,11 +17,11 @@ class SegmentSeeder extends Seeder
         $trajetId = DB::table('routes')->first()?->trajet_id; 
 
         if (!$busId || !$trajetId) {
-            $this->command->error("Khass t-seeder Buses o Routes qbel ma t-dir Segments!");
+            $this->command->error("if faut cree seedder de route et ville avant le cree sedder Segments!");
             return;
         }
 
-        // 2. Creeyi des segments dial t-test
+        
         Segment::create([
             'bus_id' => $busId,
             'tarif'=> 100.00,
@@ -34,10 +34,36 @@ class SegmentSeeder extends Seeder
         Segment::create([
             'bus_id' => $busId,
             'tarif'=> 90.00,
-            'departure_city' => 'Marrakech',
-            'arrival_city' => 'Agadir',
+            'departure_city' => 'Casablanca',
+            'arrival_city' => 'Rabat',
             'trajet_id' => $trajetId,
             'departure_time' => now()->addDays(2),
+        ]);
+
+        Segment::create([
+            'bus_id' => $busId,
+            'tarif'=> 100.00,
+            'departure_city' => 'Marrakech',
+            'arrival_city' => 'Rabat',
+            'trajet_id' => $trajetId,
+            'departure_time' => now()->addDays(3),
+        ]);
+
+         Segment::create([
+            'bus_id' => $busId,
+            'tarif'=> 90.00,
+            'departure_city' => 'Marrakech',
+            'arrival_city' => 'agadir',
+            'trajet_id' => $trajetId,
+            'departure_time' => now()->addDays(4),
+        ]);
+        Segment::create([
+            'bus_id' => $busId,
+            'tarif'=> 90.00,
+            'departure_city' => 'Safi',
+            'arrival_city' => 'Casa',
+            'trajet_id' => $trajetId,
+            'departure_time' => now()->addDays(4),
         ]);
     }
 }
