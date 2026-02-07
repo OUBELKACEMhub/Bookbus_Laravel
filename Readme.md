@@ -91,11 +91,11 @@ Visit `http://localhost:8000` to view the application.
 
 |            login Page            |               Search Results                |
 | :------------------------------: | :-----------------------------------------: |
-| ![Home](https://raw.githubusercontent.com/OUBELKACEMhub/Bookbus_Laravel/main/public\images\login.png) | ![Search](https://raw.githubusercontent.com/OUBELKACEMhub/Bookbus_Laravel/main/public\images\searchResultat.png) |
+| ![Home](https://raw.githubusercontent.com/OUBELKACEMhub/Bookbus_Laravel/main/public/images/login.png) | ![Search](https://raw.githubusercontent.com/OUBELKACEMhub/Bookbus_Laravel/main/public/images/searchResultat.png) |
 
 |                  Booking Ticket                  |              User Dashboard              |
 | :----------------------------------------------: | :--------------------------------------: |
-| ![Ticket](https://raw.githubusercontent.com/OUBELKACEMhub/Bookbus_Laravel/main/public\images\process_reservation.png) | ![Dashboard](public\images\homepage.png) |
+| ![Ticket](https://raw.githubusercontent.com/OUBELKACEMhub/Bookbus_Laravel/main/public/images/process_reservation.png) | ![Dashboard](public/images/homepage.png) |
 
 _(Don't forget to add your screenshots in a folder named `screenshots`)_
 
