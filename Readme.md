@@ -1,6 +1,6 @@
 # 🚍 BookBus - Smart Bus Reservation Platform
 
-![BookBus Banner](..\public\images\homepage.png)
+![BookBus Homepage](https://raw.githubusercontent.com/OUBELKACEMhub/Bookbus_Laravel/main/public/images/homepage.png)
 
 ## 📝 About The Project
 
