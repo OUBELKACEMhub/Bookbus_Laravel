@@ -1,6 +1,6 @@
 # 🚍 BookBus - Smart Bus Reservation Platform
 
-![BookBus Banner](public\images\homepage.png)
+![BookBus Banner](..\public\images\homepage.png)
 
 ## 📝 About The Project
 
