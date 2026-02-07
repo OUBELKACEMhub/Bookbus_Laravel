@@ -103,8 +103,8 @@ _(Don't forget to add your screenshots in a folder named `screenshots`)_
 
 **[Your Name]**
 
-- **LinkedIn:** [Your LinkedIn Profile](www.linkedin.com/in/oubelkacem-ahmed-8b2090242)
-- **GitHub:** [Your GitHub Profile](https://github.com/OUBELKACEMhub)
+- **LinkedIn:** www.linkedin.com/in/oubelkacem-ahmed-8b2090242
+- **GitHub:** https://github.com/OUBELKACEMhub
 - **Email:** oubelkacemahmed78@gmail.com
 
 ---
