@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class Programme extends Model
 {
     protected $fillable = ['jour_depart', 'heure_depart', 'heure_arrivee', 'route_id'];
+    
     protected $casts = [
     'date_depart' => 'datetime',
 ];

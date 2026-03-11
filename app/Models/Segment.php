@@ -18,6 +18,7 @@ class Segment extends Model
         'trajet_id',
         'departure_time',
     ];
+    
 
    
     public function route(): BelongsTo

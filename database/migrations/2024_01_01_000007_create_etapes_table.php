@@ -21,8 +21,7 @@ public function up(): void
       
         $table->foreignId('segment_id')->constrained('segments')->onDelete('cascade');
         
-        $table->foreignId('route_id')->constrained('routes')->onDelete('cascade');
-        
+$table->foreignId('route_id')->constrained('routes', 'trajet_id')->onDelete('cascade');         
         $table->foreignId('gare_id')->constrained('Gares')->onDelete('cascade');
 
         $table->timestamps();
